@@ -4,60 +4,78 @@
  * Created by PhpStorm.
  * User: fariza
  * Date: 30/08/16
- * Time: 13:16
+ * Time: 14:01
  */
-class Test extends PHPUnit_Framework_TestCase
+class successPayment extends PHPUnit_Framework_TestCase
 {
     /**
      * @param $amount
-     *
-     *
-     *
-     *
+     */
+    Public $CardNumber;
+    Public $ExpirationDate;
+    Public $CardCode;
+    Public $order;
+    Public $payment1;
+    public $AuthcreditCard;
+    public $request;
+    public $response;
+    public $controller;
+
+    /*
+     * define global variables
      */
 
-
-
     /**
-     * @param $amount
-     */Public function AuthCreditCard($amount){
-
+     * @param $payment
+     */
+    Public function AuthCreditCard($payment){
 
 
         // Create the payment data for a credit card
         /** @var TYPE_NAME $AuthcreditCard */
-        $AuthcreditCard = new AnetAPI\CreditCardType();
+        $AuthcreditCard = new  CreditCardType();
         $creditCard->setCardNumber("77777777777");
         $creditCard->setExpirationDate("1/9/2016");
-        $creditCard->setCardCode("123456");
-        $payment1 = new AnetAPI\PaymentType();
+        $creditCard->setCardCode('123');
+
+        $payment1 = new PaymentType();
         $payment1->setCreditCard($creditCard);
-        $order = new AnetAPI\OrderType();
-        $order->setDescription("New Item");
+
+        $order = new OrderType();
+        /** @var TYPE_NAME $order */
+        $order->setDescription('New Item');
+
         //create a transaction
-        $transactionRequestType = new AnetAPI\TransactionRequestType();
-        $transactionRequestType->setTransactionType( "authCaptureTransaction");
-        $transactionRequestType->setAmount($amount);
+        /** @var TYPE_NAME $transactionRequestType */
+
+        $transactionRequestType = new  TransactionRequestType();
+        $transactionRequestType->setTransactionType( "authTransaction");
         $transactionRequestType->setOrder($order);
         $transactionRequestType->setPayment($payment1);
 
-        $request = new AnetAPI\CreateTransactionRequest();
+        $request = new CreateTransactionRequest();
         $request->setRefId( $refId);
         $request->setTransactionRequest( $transactionRequestType);
-        $controller = new AnetController\CreateTransactionController($request);
-        $response = $controller->executeWithApiResponse( \net\authorize\api\constants\ANetEnvironment::SANDBOX);
+        $controller = new  CreateTransactionController($request);
+        $response = $controller->executeWithApiResponse($response);
 
-    if ($response != null)
-    {
-        echo 'Your payment has been successful. ';
+        /** @var TYPE_NAME $tresponse */
+        if ($response != null)
+        {
+
+                    echo 'Your payment has been successful. ';
+         }
+         else {
+
+        if ($response->getErrors() != null) {
+                        echo " Error code  : " . $response->getErrors()[0]->getErrorCode() . "\n";
+                        echo $response->getErrors()[0]->getErrorText() . " Error message : " . "\n";
+          }
+                    echo 'Payment has been Faild \n';
+                }
+
+
+
     }
-    else{
-
-
-        echo  'Payment has been Faild \n';
-
-    }
-
-}
 }
 ?>
