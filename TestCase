@@ -1,0 +1,136 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: fariza
+ * Date: 30/08/16
+ * Time: 14:01
+ */
+class successPayment extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @param $amount
+     */
+    Public $CardNumber;
+    Public $ExpirationDate;
+    Public $UsrcreditCard;
+    Public $order_status;
+    Public $payment1;
+    public $AuthcreditCard;
+    public $request;
+    public $response;
+    public $controller;
+
+    /*
+     * define global variables
+     */
+
+    /**
+     * @param $payment
+     */
+    Public function AuthCreditCard($payment)
+    {
+
+
+        // Create the payment data for a credit card
+        /** @var TYPE_NAME $AuthcreditCard */
+        $AuthcreditCard = new  CreditCardType();
+        $UsrcreditCard->setCardNumber( "77777777777" );
+        $this->assertEquals( '77777777777', $UsrcreditCard->getCredit() );
+        $creditCard->setExpirationDate( "1/9/2016" );
+
+        /** @var TYPE_NAME $CcreditCard */
+        $CcreditCard->setCardCode( '123' );
+        $this->assertEquals( '123', $CcreditCard->getCredit() );
+
+        $payment1 = new PaymentType();
+        $payment1->setCreditCard( $creditCard );
+
+        $order_status = new OrderType();
+        /** @var TYPE_NAME $order */
+        $order_status->setDescription( ' Item' );
+
+        /**
+         * @param $Credit
+         */
+        $transactionRequestType = new  TransactionRequestType();
+        $transactionRequestType->setTransactionType( "authTransaction" );
+        $transactionRequestType->setOrder( $order_status );
+        $transactionRequestType->setPayment( $payment1 );
+
+        $request = new CreateTransactionRequest();
+        $request->setTransactionRequest( $transactionRequestType );
+        /** @var TYPE_NAME $controller */
+        $controller = new  CreateTransactionController();
+        $response = $controller->executeWithApiResponse( $response );
+        $is_payment_done = $this->createMock(PaymentGate::class);
+        //
+        $is_payment_done->method('check_Payment')->willReturn(true);
+        return $this->assertEquals(true,$payment->is_payment_done()
+        /** @var TYPE_NAME $tresponse */
+
+        /**
+         *
+         */
+        // Create is_payment_done for the PaymentGate class.
+       );
+        function check_Payment()
+        {
+            // payment is done
+
+            if ($response != null) {
+
+                echo 'Your payment has been successful. ';
+            } else {
+
+                if ($response->getErrors() != null) {
+                    echo " Error code  : " . $response->getErrors()[0]->getErrorCode() . "\n";
+                    echo $response->getErrors()[0]->getErrorText() . " Error message : " . "\n";
+                }
+                echo 'Payment has been Faild \n';
+            }
+
+
+        }
+
+        /**
+         * @return bool
+         */
+
+
+
+        /**
+         *
+         */
+        function change_order_status_after_payment_is_done()
+        {
+            if ($this->test_if_payment_is_successfull()) {
+                // Change Order status
+                $this->order_status = "received";
+            }
+        }
+
+
+        /**
+         * @return bool
+         */
+        function test_if_order_status_if_received()
+        {
+            if ($this->order_status == "received") {
+                return true;
+            }
+        }
+
+
+        function send_Email_if_payment_is_done()
+        {
+            if (test_if_order_status_if_received()) {
+                $this->send_email();
+            }
+        }
+
+
+    }
+}
+
+?>
