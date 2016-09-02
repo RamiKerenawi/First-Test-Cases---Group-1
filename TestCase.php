@@ -16,13 +16,13 @@ class successPayment extends TestCase
      */
     Public $CardNumber;
     Public $ExpirationDate;
-    Public $CardCode;
-    Public $order;
+    Public $UsrcreditCard;
+    Public $order_status;
     Public $payment1;
     public $AuthcreditCard;
     public $request;
     public $response;
-    public $controller;
+    public $controller;r;
     /*
      * define global variables
      */
@@ -33,25 +33,51 @@ class successPayment extends TestCase
         // Create the payment data for a credit card
         /** @var TYPE_NAME $AuthcreditCard */
 
+        Public function AuthCreditCard($payment)
+    {
+
+
+        // Create the payment data for a credit card
+        /** @var TYPE_NAME $AuthcreditCard */
         $AuthcreditCard = new  CreditCardType();
-        $creditCard->setCardNumber("77777777777");
-        $creditCard->setExpirationDate("1/9/2016");
-        $creditCard->setCardCode('123');
+        $UsrcreditCard->setCardNumber( "77777777777" );
+        $this->assertEquals( '77777777777', $UsrcreditCard->getCredit() );
+        $creditCard->setExpirationDate( "1/9/2016" );
+
+        /** @var TYPE_NAME $CcreditCard */
+        $CcreditCard->setCardCode( '123' );
+        $this->assertEquals( '123', $CcreditCard->getCredit() );
+
         $payment1 = new PaymentType();
-        $payment1->setCreditCard($creditCard);
-        $order = new OrderType();
+        $payment1->setCreditCard( $creditCard );
+
+        $order_status = new OrderType();
         /** @var TYPE_NAME $order */
-        $order->setDescription('New Item');
-        //create a transaction
-        /** @var TYPE_NAME $transactionRequestType */
+        $order_status->setDescription( ' Item' );
+
+        /**
+         * @param $Credit
+         */
         $transactionRequestType = new  TransactionRequestType();
-        $transactionRequestType->setTransactionType( "authTransaction");
-        $transactionRequestType->setOrder($order);
-        $transactionRequestType->setPayment($payment1);
+        $transactionRequestType->setTransactionType( "authTransaction" );
+        $transactionRequestType->setOrder( $order_status );
+        $transactionRequestType->setPayment( $payment1 );
+
         $request = new CreateTransactionRequest();
-        $request->setRefId( $refId);
-        $request->setTransactionRequest( $transactionRequestType);
-        $controller = new  CreateTransactionController($request);
+        $request->setTransactionRequest( $transactionRequestType );
+        /** @var TYPE_NAME $controller */
+        $controller = new  CreateTransactionController();
+        $response = $controller->executeWithApiResponse( $response );
+        $is_payment_done = $this->createMock(PaymentGate::class);
+        //
+        $is_payment_done->method('check_Payment')->willReturn(true);
+        return $this->assertEquals(true,$payment->is_payment_done()
+        /** @var TYPE_NAME $tresponse */
+
+        /**
+         *
+         */
+        // Create is_payment_done for the PaymentGate class.
         $response = $controller->executeWithApiResponse($response);
         /** @var TYPE_NAME $tresponse */
         if ($response != null)
