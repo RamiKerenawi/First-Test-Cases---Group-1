@@ -11,72 +11,71 @@ use PHPUnit\Framework\TestCase;
  */
 class successPayment extends TestCase
 {
-    /**
-     * @param $amount
-     */
+   
     Public $CardNumber;
-    Public $ExpirationDate;
     Public $UsrcreditCard;
     Public $order_status;
-    Public $payment1;
+    Public $payment;
     public $AuthcreditCard;
     public $request;
     public $response;
-    public $controller;r;
+ 
     /*
      * define global variables
      */
     /**
      * @param $payment
      */
-    Public function AuthCreditCard($payment){
+     //test Auth
+    Public function AuthCreditCard($Auth){
 
         // Create the payment data for a credit card
         /** @var TYPE_NAME $AuthcreditCard */
         $AuthcreditCard = new  CreditCardType();
-        $UsrcreditCard->setCardNumber( "77777777777" );
-        $this->assertEquals( '77777777777', $UsrcreditCard->getCredit() );
+        $UsrcreditCard->setCardNumber( "123456" );
+        $this->assertEquals( '123456', $UsrcreditCard->getCredit() );
         $creditCard->setExpirationDate( "1/9/2016" );
 
         /** @var TYPE_NAME $CcreditCard */
         $CcreditCard->setCardCode( '123' );
         $this->assertEquals( '123', $CcreditCard->getCredit() );
+    }
+    
+    //test sucessful Payment
+        
+        public function check_Payment() {
 
-        $payment1 = new PaymentType();
-        $payment1->setCreditCard( $creditCard );
+        $payment = new PaymentType();
+        $payment->setCreditCard( $creditCard );
 
         $order_status = new OrderType();
         /** @var TYPE_NAME $order */
         $order_status->setDescription( ' Item' );
 
-        /**
-         * @param $Credit
-         */
         $transactionRequestType = new  TransactionRequestType();
         $transactionRequestType->setTransactionType( "authTransaction" );
         $transactionRequestType->setOrder( $order_status );
-        $transactionRequestType->setPayment( $payment1 );
-
+        $transactionRequestType->setPayment( $payment );
         $request = new CreateTransactionRequest();
         $request->setTransactionRequest( $transactionRequestType );
         /** @var TYPE_NAME $controller */
         $controller = new  CreateTransactionController();
         $response = $controller->executeWithApiResponse( $response );
-        $is_payment_done = $this->createMock(PaymentGate::class);
-        //
-        $is_payment_done->method('check_Payment')->willReturn(true);
-        return $this->assertEquals(true,$payment->is_payment_done()
+        $is_response_done = $this->createMock(PaymentGate::class);
+         }
         /** @var TYPE_NAME $tresponse */
 
         /**
          *
          */
         // Create is_payment_done for the PaymentGate class.
-        $response = $controller->executeWithApiResponse($response);
+        
         /** @var TYPE_NAME $tresponse */
+        public function succes_Payment(){
         if ($response != null)
         {
             echo 'Your payment has been successful. ';
+            //return true
         }
         else {
             if ($response->getErrors() != null) {
@@ -84,8 +83,10 @@ class successPayment extends TestCase
                 echo $response->getErrors()[0]->getErrorText() . " Error message : " . "\n";
             }
             echo 'Payment has been Faild \n';
+            //return fales
         }
-    }
+    
+    
 }
 
 // Rami
@@ -153,32 +154,32 @@ class PaymentTest extends TestCase {
  * Date: 28/08/16
  * Time: 18:34
  */
-public class usr  {
+//public class usr  {
     /**
      * @param $Credit
      */
-    public function setCreditCard ($Credit){
-        $userCredit = new Credit();
-        $userCredit->setCredit ($Credit);
-    )
-    }
-}
-class Credit {
-    var $userCredit ;
-    public function setCredit($Cerdit){
-        $userCredit = $Cerdit;
-    }
-    public function getCredit(){
-        return $this-> $userCredit;
-    }
-}
-class userAuth extends TestClass
-{
-    public function testUserCredit (){
-        $usrCredit = new Credit();
-        $usrCredit->setCredit('123456');
-        $this->assertEquals('123456',$usrCredit->getCredit());
-    }
-}
+    //public function setCreditCard ($Credit){
+       // $UsrcreditCard= new Credit();
+       // $UsrcreditCard->setCredit ($Credit);
+   // )
+   // }
+//}
+//class Credit {
+   // var $UsrcreditCard ;
+    //public function setCredit($Cerdit){
+       // $UsrcreditCard = $Cerdit;
+   // }
+    //public function getCredit(){
+        //return $this-> $UsrcreditCard;
+    //}
+//}
+//class userAuth extends TestClass
+//{
+    //public function testUserCredit (){
+        //$UsrcreditCard = new Credit();
+       // $UsrcreditCard->setCredit('123456');
+       // $this->assertEquals('123456',$UsrcreditCard->getCredit());
+   // }
+//}
 
 ?>
