@@ -30,12 +30,6 @@ class successPayment extends TestCase
      * @param $payment
      */
     Public function AuthCreditCard($payment){
-        // Create the payment data for a credit card
-        /** @var TYPE_NAME $AuthcreditCard */
-
-        Public function AuthCreditCard($payment)
-    {
-
 
         // Create the payment data for a credit card
         /** @var TYPE_NAME $AuthcreditCard */
