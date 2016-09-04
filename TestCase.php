@@ -94,22 +94,15 @@ class successPayment extends TestCase
 
 //use PHPUnit\Framework\TestCase;
 //  Successful payment must change the Order status and send Email to the client
-class PaymentGate extends TestCase {
-    public function check_Payment() {
-        // payment is done
-        return true;
-    }
-    public function is_payment_done() {
-        // payment is done
-        return true;
-    }
-}
-class validate_email extends  TestCase {
+
+
+ {
     public function is_email_correct() {
         return true;
     }
 }
-class PaymentTest extends TestCase {
+
+ {
     var $order_status = "";
     public function test_if_payment_is_successfull()
     {
@@ -154,32 +147,40 @@ class PaymentTest extends TestCase {
  * Date: 28/08/16
  * Time: 18:34
  */
-//public class usr  {
-    /**
-     * @param $Credit
-     */
-    //public function setCreditCard ($Credit){
-       // $UsrcreditCard= new Credit();
-       // $UsrcreditCard->setCredit ($Credit);
-   // )
-   // }
-//}
-//class Credit {
-   // var $UsrcreditCard ;
-    //public function setCredit($Cerdit){
-       // $UsrcreditCard = $Cerdit;
-   // }
-    //public function getCredit(){
-        //return $this-> $UsrcreditCard;
-    //}
-//}
-//class userAuth extends TestClass
-//{
-    //public function testUserCredit (){
-        //$UsrcreditCard = new Credit();
-       // $UsrcreditCard->setCredit('123456');
-       // $this->assertEquals('123456',$UsrcreditCard->getCredit());
-   // }
-//}
+ 
+    public function setCreditCard ($Credit){
+        $UsrcreditCard= new Credit();
+        $UsrcreditCard->setCredit ($Credit);
+    )
+   }
+
+
+ 
+    public function testUserCredit (){
+        $UsrcreditCard = new Credit();
+        $UsrcreditCard->setCredit('123456');
+        $this->assertEquals('123456',$UsrcreditCard->getCredit());
+    }
+}
+class Credit {
+     var $UsrcreditCard ;
+     public function setCredit($Cerdit){
+        $UsrcreditCard = $Cerdit;
+    }
+    public function getCredit(){
+        return $this-> $UsrcreditCard;
+    }
+}
+
+class PaymentGate  {
+    public function check_Payment() {
+        // payment is done
+        return true;
+    }
+    public function is_payment_done() {
+        // payment is done
+        return true;
+    }
+}
 
 ?>
